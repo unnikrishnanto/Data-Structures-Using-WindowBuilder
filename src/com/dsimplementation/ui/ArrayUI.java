@@ -28,9 +28,9 @@ public class ArrayUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField sizeField;
 	private JButton createButton;
-	private JTextField textField;
+	private JTextField elementField;
 	private JLabel indexLabel;
-	private JTextField textField_1;
+	private JTextField indexField;
 	private JButton addButton;
 	private JButton deleteButton_1;
 	private JButton deleteButton_2;
@@ -86,7 +86,7 @@ public class ArrayUI extends JFrame {
 		
 		sizeField = new JTextField();
 		sizeField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		sizeField.setBounds(177, 84, 85, 35);
+		sizeField.setBounds(149, 84, 85, 35);
 		contentPane.add(sizeField);
 		sizeField.setColumns(10);
 		
@@ -101,33 +101,50 @@ public class ArrayUI extends JFrame {
 				}
 			}
 		});
-		createButton.setBounds(290, 84, 366, 35);
+		createButton.setBounds(291, 84, 366, 35);
 		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		contentPane.add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
-		elementLabel.setBounds(33, 159, 120, 35);
+		elementLabel.setBounds(252, 159, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		contentPane.add(elementLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(177, 159, 85, 35);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		elementField = new JTextField();
+		elementField.setBounds(394, 159, 85, 35);
+		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		contentPane.add(elementField);
+		elementField.setColumns(10);
 		
 		indexLabel = new JLabel("Index");
-		indexLabel.setBounds(290, 159, 85, 35);
+		indexLabel.setBounds(39, 159, 85, 35);
 		indexLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		contentPane.add(indexLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(385, 159, 85, 35);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		indexField = new JTextField();
+		indexField.setBounds(138, 159, 85, 35);
+		indexField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		contentPane.add(indexField);
+		indexField.setColumns(10);
 		
 		addButton = new JButton("ADD ELEMENT");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(arr == null) {
+					displayField.setText("Create an array First");
+					return;
+				}
+				try {
+					int index = Integer.parseInt(indexField.getText());
+					int element = Integer.parseInt(elementField.getText());
+					if(arr.set(element, index)) {
+						displayField.setText("Added");
+					} else {
+						displayField.setText("Invalid index.");
+					}
+				} catch (Exception ex) {
+					displayField.setText("Ente a valid index and element.");
+				}
 			}
 		});
 		addButton.setBounds(507, 144, 140, 50);
@@ -137,6 +154,20 @@ public class ArrayUI extends JFrame {
 		deleteButton_1 = new JButton("REMOVE ELEMENT");
 		deleteButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(arr == null) {
+					displayField.setText("Create an array First");
+					return;
+				}
+				try {
+					int element = Integer.parseInt(elementField.getText());
+					if(arr.deleteElement(element)) {
+						displayField.setText("Element Removed");
+					} else {
+						displayField.setText("Element Not Found.");
+					}
+				} catch (Exception ex) {
+					displayField.setText("Enter an integer value for element.");
+				}
 			}
 		});
 		
@@ -145,6 +176,24 @@ public class ArrayUI extends JFrame {
 		contentPane.add(deleteButton_1);
 		
 		deleteButton_2 = new JButton("REMOVE FROM INDEX");
+		deleteButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(arr == null) {
+					displayField.setText("Create an array First");
+					return;
+				}
+				try {
+					int index = Integer.parseInt(indexField.getText());
+					if(arr.deleteFromIndex(index)) {
+						displayField.setText("Removed element from index " + index);
+					} else {
+						displayField.setText("Invalid index.");
+					}
+				} catch (Exception ex) {
+					displayField.setText("Ente a positive integer as index.");
+				}
+			}
+		});
 		deleteButton_2.setBounds(290, 226, 140, 50);
 		deleteButton_2.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		contentPane.add(deleteButton_2);
