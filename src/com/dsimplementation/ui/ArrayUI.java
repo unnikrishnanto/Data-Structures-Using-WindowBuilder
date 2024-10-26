@@ -171,7 +171,7 @@ public class ArrayUI extends JFrame {
 			}
 		});
 		
-		deleteButton_1.setBounds(33, 226, 140, 50);
+		deleteButton_1.setBounds(50, 226, 140, 50);
 		deleteButton_1.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		contentPane.add(deleteButton_1);
 		
@@ -194,7 +194,7 @@ public class ArrayUI extends JFrame {
 				}
 			}
 		});
-		deleteButton_2.setBounds(290, 226, 140, 50);
+		deleteButton_2.setBounds(280, 226, 140, 50);
 		deleteButton_2.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		contentPane.add(deleteButton_2);
 		
@@ -214,7 +214,7 @@ public class ArrayUI extends JFrame {
 				}
 			}
 		});
-		displayButton.setBounds(507, 223, 140, 50);
+		displayButton.setBounds(510, 223, 140, 50);
 		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		contentPane.add(displayButton);
 		
