@@ -1,7 +1,7 @@
 package com.dsimplementation.datastructures;
 
 public class Stack {
-	int[] stack;
+	private int[] stack;
 	private int top =-1;
 	
 	public Stack createStacK(int size) {
@@ -14,7 +14,6 @@ public class Stack {
 			return false;
 		} else {
 			stack[++top] = element;
-			System.out.println(top);
 			return true;
 		}
 	}
