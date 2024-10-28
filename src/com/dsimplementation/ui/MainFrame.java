@@ -10,9 +10,12 @@ import javax.swing.JTextArea;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class MainFrame extends JFrame {
 
@@ -76,9 +79,9 @@ public class MainFrame extends JFrame {
 		queueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		contentPane.add(queueButton);
 		
-		JButton circularQueueButton = new JButton("CIRCULAR QUEUE");
+		JButton circularQueueButton = new JButton("<html>CIRCULAR<br>&nbsp&nbsp QUEUE</html>");
 		circularQueueButton.setBounds(50, 260, 140, 50);
-		circularQueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 12));
+		circularQueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 16));
 		contentPane.add(circularQueueButton);
 		
 		JButton linkedListButton = new JButton("LINKED LIST");
@@ -90,5 +93,11 @@ public class MainFrame extends JFrame {
 		binarySearchTreeButton.setBounds(510, 260, 140, 50);
 		binarySearchTreeButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		contentPane.add(binarySearchTreeButton);
+		
+		JLabel backgroundImageLabel = new JLabel(new ImageIcon("C:\\Users\\cek\\Documents\\Backup_1\\Java Full Stack Internship\\ECLIPSE\\DSImplementation\\img\\main_background.png"));
+		backgroundImageLabel.setBounds(0, 0, 686, 363);
+		contentPane.add(backgroundImageLabel);
+		
+		
 	}
 }

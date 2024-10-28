@@ -4,41 +4,36 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import com.dsimplementation.datastructures.Stack;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.border.LineBorder;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
+import com.dsimplementation.datastructures.Queue;
+import java.awt.Insets;
 
-public class StackUI extends JFrame {
+public class QueueUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField sizeField;
 	private JButton createButton;
 	private JTextField elementField;
-	private JButton pushButton;
+	private JButton	 enqueueButton;
 	private JButton popButton;
 	private JButton peekButton;
 	private JButton displayButton;
-	private JTextPane displayPane;
-	private JScrollPane sp;
-	private Stack stack;
-	
+	private JTextArea displayArea;
+	private JScrollPane scrollArea;
+	private Queue q;
 
 	/**
 	 * Launch the application.
@@ -47,7 +42,7 @@ public class StackUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StackUI frame = new StackUI();
+					QueueUI frame = new QueueUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +54,7 @@ public class StackUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StackUI() {
+	public QueueUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 150, 700, 400);
 		contentPane = new JPanel();
@@ -69,7 +64,7 @@ public class StackUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		JTextArea title = new JTextArea("STACK");
+		JTextArea title = new JTextArea("QUEUE");
 		title.setEditable(false);
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
@@ -79,7 +74,7 @@ public class StackUI extends JFrame {
 		contentPane.add(title);
 		
 		JLabel sizeLabel = new JLabel("SIZE");
-		sizeLabel.setBounds(39, 84, 85, 35);
+		sizeLabel.setBounds(40, 84, 85, 35);
 		sizeLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		contentPane.add(sizeLabel);
 
@@ -90,126 +85,114 @@ public class StackUI extends JFrame {
 		contentPane.add(sizeField);
 		sizeField.setColumns(10);
 		
-		createButton = new JButton("CREATE STACK");
+		createButton = new JButton("CREATE QUEUE WITH GIVEN SIZE");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int size = Integer.parseInt(sizeField.getText());
-					stack = new Stack().createStacK(size);
-					displayPane.setText("Stack\nCreated.");
+					 q = new Queue().createQueue(size);
+					 displayArea.setText("Queue Created.");
 				} catch (Exception ex) {
-					displayPane.setText("Enter\na\nvalid\nsize.");
+					 displayArea.setText("Enter a valid size.");
 				}
 			}
 		});
+		
 		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		createButton.setBounds(280, 84, 140, 35);
+		createButton.setBounds(280, 84, 260, 35);
 		contentPane.add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
-		elementLabel.setBounds(39, 159, 120, 35);
+		elementLabel.setBounds(40, 155, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		contentPane.add(elementLabel);
 		
 		elementField = new JTextField();
-		elementField.setBounds(188, 159, 85, 35);
+		elementField.setBounds(190, 155, 85, 35);
 		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		contentPane.add(elementField);
 		elementField.setColumns(10);
 		
 		
-		pushButton = new JButton("PUSH");
-		pushButton.addActionListener(new ActionListener() {
+		enqueueButton = new JButton("ENQUEUE");
+		enqueueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(stack == null) {
-					displayPane.setText("Create\na\nStack\nFirst");
-					return;
+				if( q == null) {
+					displayArea.setText("Create a Queue First");
+					return;	
 				}
 				try {
 					int element = Integer.parseInt(elementField.getText());
-					if(stack.push(element)) {
-						displayPane.setText("Pushed");
-					} else {
-						displayPane.setText("Stack\nIs\nFull");
-					}
+					displayArea.setText(q.enque(element));
 				} catch (Exception ex) {
-					displayPane.setText("Ente\na\nvalid\nelement.");
+					displayArea.setText("Ente a valid element.");
 				}
 			}
 		});
-		pushButton.setBounds(280, 150, 140, 50);
-		pushButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
-		contentPane.add(pushButton);
+		enqueueButton.setBounds(310, 146, 140, 50);
+		enqueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
+		contentPane.add(enqueueButton);
 		
 		popButton = new JButton("POP");
 		popButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(stack == null) {
-					displayPane.setText("Create\na\nStack\nFirst");
+				if(q == null) {
+					displayArea.setText("Create a Queue First");
 					return;
 				}
-				displayPane.setText(stack.pop());
+				displayArea.setText(q.deque());
 			}
 		});
 		
-		popButton.setBounds(39, 226, 140, 50);
+		popButton.setBounds(480, 146, 140, 50);
 		popButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		contentPane.add(popButton);
 		
 		peekButton = new JButton("PEEK");
 		peekButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(stack == null) {
-					displayPane.setText("Create\na\nStack\nFirst");
+				if(q == null) {
+					displayArea.setText("Create a Queue First");
 					return;
 				}
 				
-				displayPane.setText(stack.peek());
+				displayArea.setText(q.peek());
 			}
 		});
-		peekButton.setBounds(280, 226, 140, 50);
+		peekButton.setBounds(135, 215, 140, 50);
 		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		contentPane.add(peekButton);
 		
 		displayButton = new JButton("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(stack == null) {
-					displayPane.setText("Create\na\nStack\nFirst");
+				if(q == null) {
+					displayArea.setText("Create a Queue First");
 				} else {
-					displayPane.setText(stack.getStack());
+					displayArea.setText(q.getQueue());
 
 					 // Ensure the viewport is set to the top-left corner
 		            SwingUtilities.invokeLater(new Runnable() {
 		                public void run() {
-		                    sp.getViewport().setViewPosition(new Point(0, 0));
+		                    scrollArea.getViewport().setViewPosition(new Point(0, 0));
 		                }
 		            });
 				}
 			}
 		});
-		displayButton.setBounds(152, 288, 140, 50);
+		displayButton.setBounds(410, 215, 140, 50);
 		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		contentPane.add(displayButton);
+		
+		displayArea = new JTextArea();
+		displayArea.setMargin(new Insets(10, 10, 2, 10));
+		displayArea.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
 		
-		displayPane = new JTextPane();
-		displayPane.setDisabledTextColor(new Color(0, 0, 0));
-		displayPane.setEditable(false);
-		displayPane.setEnabled(false);
-		displayPane.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		displayPane.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		scrollArea = new JScrollPane(displayArea,JScrollPane.VERTICAL_SCROLLBAR_NEVER , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollArea.setBounds(40, 290, 606, 60);
+		contentPane.add(scrollArea);
 		
-		// Center-align the content
-        StyledDocument doc = displayPane.getStyledDocument();
-        SimpleAttributeSet center = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
-		
-        // wrap the text pane to display scroll bar when needed
-		sp = new JScrollPane(displayPane ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		sp.setBounds(509, 43, 126, 295);
-		contentPane.add(sp);
+
 	}
-
 }
