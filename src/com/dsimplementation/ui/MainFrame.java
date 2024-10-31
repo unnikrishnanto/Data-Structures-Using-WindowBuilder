@@ -94,9 +94,7 @@ public class MainFrame extends JFrame {
 		binarySearchTreeButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		contentPane.add(binarySearchTreeButton);
 		
-		JLabel backgroundImageLabel = new JLabel(new ImageIcon("C:\\Users\\cek\\Documents\\Backup_1\\Java Full Stack Internship\\ECLIPSE\\DSImplementation\\img\\main_background.png"));
-		backgroundImageLabel.setBounds(0, 0, 686, 363);
-		contentPane.add(backgroundImageLabel);
+		
 		
 		
 	}
