@@ -1,10 +1,8 @@
 package com.dsimplementation.ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -21,7 +19,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.BST;
-import com.dsimplementation.datastructures.LinkedList;
 
 public class BSTUI extends JFrame {
 
