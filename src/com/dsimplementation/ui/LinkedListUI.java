@@ -1,7 +1,6 @@
 package com.dsimplementation.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,10 +18,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.LinkedList;
 
-public class LinkedListUI extends JFrame {
+public class LinkedListUI extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	
 	private JTextField elementField;
 	private JButton	 addFrontButton;
 	private JButton addLastButton;
@@ -38,34 +36,14 @@ public class LinkedListUI extends JFrame {
 	private JButton addNButton;
 	private JButton removeNButton;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LinkedListUI frame = new LinkedListUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public LinkedListUI() {
 		ll = new LinkedList();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 700, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		
+		setBackground(new Color(255, 255, 255));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+	    setLayout(null);
+		
 		
 		
 		JTextArea title = new JTextArea("LINKED LIST");
@@ -75,17 +53,17 @@ public class LinkedListUI extends JFrame {
 		title.setBackground(new Color(255, 255, 255));
 		title.setDisabledTextColor(new Color(0, 255, 255));
 		title.setBounds(243, 10, 200, 44);
-		contentPane.add(title);
+		add(title);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(40, 84, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(elementLabel);
+		add(elementLabel);
 		
 		elementField = new JTextField();
 		elementField.setBounds(190, 84, 85, 35);
 		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		contentPane.add(elementField);
+		add(elementField);
 		elementField.setColumns(10);
 		
 		
@@ -102,7 +80,7 @@ public class LinkedListUI extends JFrame {
 		});
 		addFrontButton.setBounds(320, 75, 140, 50);
 		addFrontButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
-		contentPane.add(addFrontButton);
+		add(addFrontButton);
 		
 		addLastButton = new JButton("ADD LAST");
 		addLastButton.addActionListener(new ActionListener() {
@@ -118,17 +96,17 @@ public class LinkedListUI extends JFrame {
 		
 		addLastButton.setBounds(500, 75, 140, 50);
 		addLastButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
-		contentPane.add(addLastButton);
+		add(addLastButton);
 		
 		indexLabel = new JLabel("Index");
 		indexLabel.setBounds(40, 159, 85, 35);
 		indexLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(indexLabel);
+		add(indexLabel);
 		
 		indexField = new JTextField();
 		indexField.setBounds(190, 159, 85, 35);
 		indexField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		contentPane.add(indexField);
+		add(indexField);
 		indexField.setColumns(10);
 		
 
@@ -152,7 +130,7 @@ public class LinkedListUI extends JFrame {
 		});
 		addNButton.setBounds(320, 150, 140, 50);
 		addNButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		contentPane.add(addNButton);
+		add(addNButton);
 	
 		
 		removeNButton = new JButton("<html>REMOVE FROM<br> INDEX</html>");
@@ -173,7 +151,7 @@ public class LinkedListUI extends JFrame {
 		});
 		removeNButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
 		removeNButton.setBounds(500, 150, 140, 50);
-		contentPane.add(removeNButton);
+		add(removeNButton);
 		
 		
 		
@@ -186,7 +164,7 @@ public class LinkedListUI extends JFrame {
 		});
 		deleFrontButton.setBounds(25, 225, 140, 50);
 		deleFrontButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		contentPane.add(deleFrontButton);
+		add(deleFrontButton);
 		
 		deleRearButton = new JButton("<html>DELETE FROM<br>REAR</html>");
 		deleRearButton.setMargin(new Insets(2, 5, 2, 5));
@@ -198,7 +176,7 @@ public class LinkedListUI extends JFrame {
 		
 		deleRearButton.setBounds(190, 225, 140, 50);
 		deleRearButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		contentPane.add(deleRearButton);
+		add(deleRearButton);
 		
 		JButton dispFrontButton = new JButton("<html>DISPLAY FROM<br>FRONT</html>");
 		dispFrontButton.setMargin(new Insets(2, 5, 2, 5));
@@ -214,7 +192,7 @@ public class LinkedListUI extends JFrame {
 		});
 		dispFrontButton.setBounds(355, 225, 140, 50);
 		dispFrontButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		contentPane.add(dispFrontButton);
+		add(dispFrontButton);
 		
 		JButton dispRearButton = new JButton("<html>DISPLAY FROM<br>REAR</html>");
 		dispRearButton.addActionListener(new ActionListener() {
@@ -231,7 +209,7 @@ public class LinkedListUI extends JFrame {
 		
 		dispRearButton.setBounds(520, 225, 140, 50);
 		dispRearButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		contentPane.add(dispRearButton);
+		add(dispRearButton);
 		
 		displayArea = new JTextArea();
 		displayArea.setMargin(new Insets(10, 10, 2, 10));
@@ -240,8 +218,13 @@ public class LinkedListUI extends JFrame {
 		
 		scrollArea = new JScrollPane(displayArea,JScrollPane.VERTICAL_SCROLLBAR_NEVER , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollArea.setBounds(40, 300, 606, 60);
-		contentPane.add(scrollArea);
+		add(scrollArea);
 		
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
+		backButton.setBounds(600, 20, 80, 40);		
+		add(backButton);
 
 	}
 }

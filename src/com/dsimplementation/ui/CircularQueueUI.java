@@ -1,7 +1,6 @@
 package com.dsimplementation.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,10 +18,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.CircularQueue;
 
-public class CircularQueueUI extends JFrame {
+public class CircularQueueUI extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+
 	private JTextField sizeField;
 	private JButton createButton;
 	private JTextField elementField;
@@ -34,33 +32,11 @@ public class CircularQueueUI extends JFrame {
 	private JTextArea displayArea;
 	private JScrollPane scrollArea;
 	private CircularQueue q;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CircularQueueUI frame = new CircularQueueUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public CircularQueueUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 700, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBackground(new Color(255, 255, 255));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+	    setLayout(null);
 		
 		
 		JTextArea title = new JTextArea("QUEUE");
@@ -70,18 +46,18 @@ public class CircularQueueUI extends JFrame {
 		title.setBackground(new Color(255, 255, 255));
 		title.setDisabledTextColor(new Color(0, 255, 255));
 		title.setBounds(280, 10, 102, 44);
-		contentPane.add(title);
+		add(title);
 		
 		JLabel sizeLabel = new JLabel("SIZE");
 		sizeLabel.setBounds(40, 84, 85, 35);
 		sizeLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(sizeLabel);
+		add(sizeLabel);
 
 		
 		sizeField = new JTextField();
 		sizeField.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		sizeField.setBounds(152, 84, 85, 35);
-		contentPane.add(sizeField);
+		add(sizeField);
 		sizeField.setColumns(10);
 		
 		createButton = new JButton("CREATE QUEUE WITH GIVEN SIZE");
@@ -99,17 +75,17 @@ public class CircularQueueUI extends JFrame {
 		
 		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
 		createButton.setBounds(280, 84, 260, 35);
-		contentPane.add(createButton);
+		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(40, 155, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(elementLabel);
+		add(elementLabel);
 		
 		elementField = new JTextField();
 		elementField.setBounds(190, 155, 85, 35);
 		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		contentPane.add(elementField);
+		add(elementField);
 		elementField.setColumns(10);
 		
 		
@@ -130,7 +106,7 @@ public class CircularQueueUI extends JFrame {
 		});
 		enqueueButton.setBounds(310, 146, 140, 50);
 		enqueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
-		contentPane.add(enqueueButton);
+		add(enqueueButton);
 		
 		dequeButton = new JButton("DEQUEUE");
 		dequeButton.addActionListener(new ActionListener() {
@@ -145,7 +121,7 @@ public class CircularQueueUI extends JFrame {
 		
 		dequeButton.setBounds(480, 146, 140, 50);
 		dequeButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
-		contentPane.add(dequeButton);
+		add(dequeButton);
 		
 		peekButton = new JButton("PEEK");
 		peekButton.addActionListener(new ActionListener() {
@@ -160,7 +136,7 @@ public class CircularQueueUI extends JFrame {
 		});
 		peekButton.setBounds(135, 215, 140, 50);
 		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
-		contentPane.add(peekButton);
+		add(peekButton);
 		
 		displayButton = new JButton("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
@@ -181,7 +157,7 @@ public class CircularQueueUI extends JFrame {
 		});
 		displayButton.setBounds(410, 215, 140, 50);
 		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
-		contentPane.add(displayButton);
+		add(displayButton);
 		
 		displayArea = new JTextArea();
 		displayArea.setMargin(new Insets(10, 10, 2, 10));
@@ -190,8 +166,12 @@ public class CircularQueueUI extends JFrame {
 		
 		scrollArea = new JScrollPane(displayArea,JScrollPane.VERTICAL_SCROLLBAR_NEVER , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollArea.setBounds(40, 290, 606, 60);
-		contentPane.add(scrollArea);
+		add(scrollArea);
 		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
+		backButton.setBounds(600, 20, 80, 40);		
+		add(backButton);
 
 	}
 	

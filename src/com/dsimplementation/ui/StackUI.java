@@ -1,11 +1,9 @@
 package com.dsimplementation.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Point;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,10 +22,10 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-public class StackUI extends JFrame {
+public class StackUI extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	
 	private JTextField sizeField;
 	private JButton createButton;
 	private JTextField elementField;
@@ -40,33 +38,11 @@ public class StackUI extends JFrame {
 	private Stack stack;
 	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StackUI frame = new StackUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public StackUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 700, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBackground(new Color(255, 255, 255));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+	    setLayout(null);
 		
 		
 		JTextArea title = new JTextArea("STACK");
@@ -76,18 +52,18 @@ public class StackUI extends JFrame {
 		title.setBackground(new Color(255, 255, 255));
 		title.setDisabledTextColor(new Color(0, 255, 255));
 		title.setBounds(280, 10, 102, 44);
-		contentPane.add(title);
+		add(title);
 		
 		JLabel sizeLabel = new JLabel("SIZE");
 		sizeLabel.setBounds(39, 84, 85, 35);
 		sizeLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(sizeLabel);
+		add(sizeLabel);
 
 		
 		sizeField = new JTextField();
 		sizeField.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		sizeField.setBounds(152, 84, 85, 35);
-		contentPane.add(sizeField);
+		add(sizeField);
 		sizeField.setColumns(10);
 		
 		createButton = new JButton("CREATE STACK");
@@ -104,17 +80,17 @@ public class StackUI extends JFrame {
 		});
 		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
 		createButton.setBounds(280, 84, 140, 35);
-		contentPane.add(createButton);
+		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(39, 159, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(elementLabel);
+		add(elementLabel);
 		
 		elementField = new JTextField();
 		elementField.setBounds(188, 159, 85, 35);
 		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		contentPane.add(elementField);
+		add(elementField);
 		elementField.setColumns(10);
 		
 		
@@ -139,7 +115,7 @@ public class StackUI extends JFrame {
 		});
 		pushButton.setBounds(280, 150, 140, 50);
 		pushButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
-		contentPane.add(pushButton);
+		add(pushButton);
 		
 		popButton = new JButton("POP");
 		popButton.addActionListener(new ActionListener() {
@@ -154,7 +130,7 @@ public class StackUI extends JFrame {
 		
 		popButton.setBounds(39, 226, 140, 50);
 		popButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
-		contentPane.add(popButton);
+		add(popButton);
 		
 		peekButton = new JButton("PEEK");
 		peekButton.addActionListener(new ActionListener() {
@@ -169,7 +145,7 @@ public class StackUI extends JFrame {
 		});
 		peekButton.setBounds(280, 226, 140, 50);
 		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
-		contentPane.add(peekButton);
+		add(peekButton);
 		
 		displayButton = new JButton("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
@@ -190,7 +166,7 @@ public class StackUI extends JFrame {
 		});
 		displayButton.setBounds(152, 288, 140, 50);
 		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
-		contentPane.add(displayButton);
+		add(displayButton);
 
 		
 		displayPane = new JTextPane();
@@ -209,7 +185,12 @@ public class StackUI extends JFrame {
         // wrap the text pane to display scroll bar when needed
 		sp = new JScrollPane(displayPane ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setBounds(509, 43, 126, 295);
-		contentPane.add(sp);
+		add(sp);
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
+		backButton.setBounds(610, 20, 80, 20);		
+		add(backButton);
 	}
 
 }

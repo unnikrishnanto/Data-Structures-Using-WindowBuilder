@@ -1,7 +1,6 @@
 package com.dsimplementation.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,10 +18,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.BST;
 
-public class BSTUI extends JFrame {
+public class BSTUI extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	
 	private JTextField elementField;
 	private JButton	 insertButton;
@@ -34,33 +31,10 @@ public class BSTUI extends JFrame {
 	private JScrollPane scrollArea;
 	
 	private BST.Node root;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BSTUI frame = new BSTUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public BSTUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 700, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBackground(new Color(255, 255, 255));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+	    setLayout(null);
 		
 		JTextArea title = new JTextArea("BINARY SEARCH TREE");
 		title.setEditable(false);
@@ -69,18 +43,18 @@ public class BSTUI extends JFrame {
 		title.setBackground(null);
 		title.setDisabledTextColor(new Color(0, 255, 255));
 		title.setBounds(174, 10, 330, 44);
-		contentPane.add(title);
+		add(title);
 		
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(28, 110, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		contentPane.add(elementLabel);
+		add(elementLabel);
 		
 		elementField = new JTextField();
 		elementField.setBounds(190, 110, 85, 35);
 		elementField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		contentPane.add(elementField);
+		add(elementField);
 		elementField.setColumns(10);
 		
 		
@@ -99,7 +73,7 @@ public class BSTUI extends JFrame {
 		});
 		insertButton.setBounds(320, 101, 140, 50);
 		insertButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(insertButton);
+		add(insertButton);
 		
 		deleteButton = new JButton("<html>&NBSP; DELETE<br>ELEMENT<html>");
 		deleteButton.addActionListener(new ActionListener() {
@@ -121,7 +95,7 @@ public class BSTUI extends JFrame {
 		
 		deleteButton.setBounds(500, 101, 140, 50);
 		deleteButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(deleteButton);
+		add(deleteButton);
 		
 		
 		
@@ -144,7 +118,7 @@ public class BSTUI extends JFrame {
 		});
 		searchButton.setBounds(28, 200, 140, 50);
 		searchButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(searchButton);
+		add(searchButton);
 		
 		inOrderButton = new JButton("<html>DISPLAY<br>IN-ORDER</html>");
 		inOrderButton.setMargin(new Insets(2, 5, 2, 5));
@@ -166,7 +140,7 @@ public class BSTUI extends JFrame {
 		
 		inOrderButton.setBounds(190, 200, 140, 50);
 		inOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(inOrderButton);
+		add(inOrderButton);
 		
 		JButton preOrderButton = new JButton("<html>DISPLAY<br>PRE-ORDER</html>");
 		preOrderButton.setMargin(new Insets(2, 5, 2, 5));
@@ -187,7 +161,7 @@ public class BSTUI extends JFrame {
 		});
 		preOrderButton.setBounds(355, 200, 140, 50);
 		preOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(preOrderButton);
+		add(preOrderButton);
 		
 		JButton postOrderButton = new JButton("<html>DISPLAY <br>POST-ORDER</html>");
 		postOrderButton.addActionListener(new ActionListener() {
@@ -209,7 +183,7 @@ public class BSTUI extends JFrame {
 		
 		postOrderButton.setBounds(520, 200, 140, 50);
 		postOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
-		contentPane.add(postOrderButton);
+		add(postOrderButton);
 		
 		displayArea = new JTextArea();
 		displayArea.setMargin(new Insets(10, 10, 2, 10));
@@ -218,9 +192,14 @@ public class BSTUI extends JFrame {
 		
 		scrollArea = new JScrollPane(displayArea,JScrollPane.VERTICAL_SCROLLBAR_NEVER , JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollArea.setBounds(40, 280, 606, 60);
-		contentPane.add(scrollArea);
+		add(scrollArea);
+		
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
+		backButton.setBounds(600, 20, 80, 40);		
+		add(backButton);
 	}
-	
-	
+
 
 }
