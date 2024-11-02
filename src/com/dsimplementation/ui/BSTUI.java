@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.BST;
+import com.dsimplementation.util.RoundedButton;
 
 public class BSTUI extends JPanel {
 
@@ -195,9 +197,10 @@ public class BSTUI extends JPanel {
 		add(scrollArea);
 		
 		
-		JButton backButton = new JButton("Back");
+		ImageIcon closeIcon  =new ImageIcon(getClass().getResource("/resources/closeButton.png"));
+		RoundedButton backButton = new RoundedButton(30, closeIcon, 1);
 		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
-		backButton.setBounds(600, 20, 80, 40);		
+		backButton.setBounds(630, 20, 30, 30);		
 		add(backButton);
 	}
 

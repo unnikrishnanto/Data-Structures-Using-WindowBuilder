@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 import com.dsimplementation.datastructures.Array;
+import com.dsimplementation.util.RoundedButton;
 
 
 public class ArrayUI extends JPanel {
@@ -204,9 +206,10 @@ public class ArrayUI extends JPanel {
 		sp.setBounds(25, 298, 650, 60);
 		add(sp);
 		
-		JButton backButton = new JButton("Back");
+		ImageIcon closeIcon  =new ImageIcon(getClass().getResource("/resources/closeButton.png"));
+		RoundedButton backButton = new RoundedButton(30, closeIcon, 1);
 		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
-		backButton.setBounds(600, 20, 80, 40);		
+		backButton.setBounds(630, 20, 30, 30);		
 		add(backButton);
 	}
 }

@@ -13,7 +13,9 @@ import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import com.dsimplementation.datastructures.Stack;
+import com.dsimplementation.util.RoundedButton;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -187,9 +189,10 @@ public class StackUI extends JPanel {
 		sp.setBounds(509, 43, 126, 295);
 		add(sp);
 		
-		JButton backButton = new JButton("Back");
+		ImageIcon closeIcon  =new ImageIcon(getClass().getResource("/resources/closeButton.png"));
+		RoundedButton backButton = new RoundedButton(30, closeIcon, 1);
 		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
-		backButton.setBounds(610, 20, 80, 20);		
+		backButton.setBounds(640, 20, 30, 30);		
 		add(backButton);
 	}
 
