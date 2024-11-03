@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.Queue;
 import com.dsimplementation.util.RoundedButton;
+import com.dsimplementation.util.SquareButtons;
 
 import java.awt.Insets;
 
@@ -38,14 +39,15 @@ public class QueueUI extends JPanel {
 	public QueueUI() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 	    setLayout(null);
 		
 		JTextArea title = new JTextArea("QUEUE");
 		title.setEditable(false);
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		title.setBackground(new Color(255, 255, 255));
-		title.setDisabledTextColor(new Color(0, 255, 255));
+		title.setBackground(null);
+		title.setDisabledTextColor(new Color(255, 131, 5));
 		title.setBounds(280, 10, 102, 44);
 		add(title);
 		
@@ -57,30 +59,31 @@ public class QueueUI extends JPanel {
 		
 		sizeField = new JTextField();
 		sizeField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		sizeLabel.setForeground(new Color(2, 76, 170));
 		sizeField.setBounds(152, 84, 85, 35);
 		add(sizeField);
 		sizeField.setColumns(10);
 		
-		createButton = new JButton("CREATE QUEUE WITH GIVEN SIZE");
+		createButton = new SquareButtons("CREATE QUEUE WITH GIVEN SIZE", 15);
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int size = Integer.parseInt(sizeField.getText());
 					 q = new Queue().createQueue(size);
-					 displayArea.setText("Queue Created.");
+					 displayArea.setText("Queue of size " + size + " Created.");
 				} catch (Exception ex) {
 					 displayArea.setText("Enter a valid size.");
 				}
 			}
 		});
 		
-		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
 		createButton.setBounds(280, 84, 260, 35);
 		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(40, 155, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
+		elementLabel.setForeground(new Color(2, 76, 170));
 		add(elementLabel);
 		
 		elementField = new JTextField();
@@ -90,7 +93,7 @@ public class QueueUI extends JPanel {
 		elementField.setColumns(10);
 		
 		
-		enqueueButton = new JButton("ENQUEUE");
+		enqueueButton = new SquareButtons("ENQUEUE");
 		enqueueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( q == null) {
@@ -106,10 +109,9 @@ public class QueueUI extends JPanel {
 			}
 		});
 		enqueueButton.setBounds(310, 146, 140, 50);
-		enqueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		add(enqueueButton);
 		
-		popButton = new JButton("POP");
+		popButton = new SquareButtons("POP", 30);
 		popButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -121,10 +123,9 @@ public class QueueUI extends JPanel {
 		});
 		
 		popButton.setBounds(480, 146, 140, 50);
-		popButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(popButton);
 		
-		peekButton = new JButton("PEEK");
+		peekButton = new SquareButtons("PEEK", 30);
 		peekButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -136,10 +137,9 @@ public class QueueUI extends JPanel {
 			}
 		});
 		peekButton.setBounds(135, 215, 140, 50);
-		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(peekButton);
 		
-		displayButton = new JButton("DISPLAY");
+		displayButton = new SquareButtons("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -157,7 +157,6 @@ public class QueueUI extends JPanel {
 			}
 		});
 		displayButton.setBounds(410, 215, 140, 50);
-		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		add(displayButton);
 		
 		displayArea = new JTextArea();

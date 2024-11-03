@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import com.dsimplementation.datastructures.Array;
 import com.dsimplementation.util.RoundedButton;
+import com.dsimplementation.util.SquareButtons;
 
 
 public class ArrayUI extends JPanel {
@@ -43,20 +44,22 @@ public class ArrayUI extends JPanel {
 		
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 	    setLayout(null);
 		
 		JTextArea title = new JTextArea("ARRAY");
 		title.setEditable(false);
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		title.setBackground(new Color(255, 255, 255));
-		title.setDisabledTextColor(new Color(0, 255, 255));
+		title.setBackground(null);
+		title.setDisabledTextColor(new Color(255, 131, 5));
 		title.setBounds(290, 10, 106, 44);
 		add(title);
 		
 				
 		JLabel sizeLabel = new JLabel("SIZE");
 		sizeLabel.setBounds(39, 84, 85, 35);
+		sizeLabel.setForeground(new Color(2, 76, 170));
 		sizeLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(sizeLabel);
 
@@ -67,23 +70,24 @@ public class ArrayUI extends JPanel {
 		add(sizeField);
 		sizeField.setColumns(10);
 		
-		createButton = new JButton("CREATE AN ARRAY OF ENTERED SIZE");
+		createButton = new SquareButtons("CREATE AN ARRAY OF ENTERED SIZE", 20);
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int size = Integer.parseInt(sizeField.getText());
-					arr = new Array().createArray(size);
+					arr = new Array();
+					displayField.setText(arr.createArray(size));
 				} catch (Exception ex) {
 					displayField.setText("Enter a valid size.");
 				}
 			}
 		});
-		createButton.setBounds(291, 84, 366, 35);
-		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
+		createButton.setBounds(280, 84, 366, 35);
 		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(252, 159, 120, 35);
+		elementLabel.setForeground(new Color(2, 76, 170));
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(elementLabel);
 		
@@ -95,6 +99,7 @@ public class ArrayUI extends JPanel {
 		
 		indexLabel = new JLabel("Index");
 		indexLabel.setBounds(39, 159, 85, 35);
+		indexLabel.setForeground(new Color(2, 76, 170));
 		indexLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(indexLabel);
 		
@@ -104,7 +109,7 @@ public class ArrayUI extends JPanel {
 		add(indexField);
 		indexField.setColumns(10);
 		
-		addButton = new JButton("ADD ELEMENT");
+		addButton = new SquareButtons("<html>ADD<br> ELEMENT<html>", 20);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(arr == null) {
@@ -114,21 +119,16 @@ public class ArrayUI extends JPanel {
 				try {
 					int index = Integer.parseInt(indexField.getText());
 					int element = Integer.parseInt(elementField.getText());
-					if(arr.set(element, index)) {
-						displayField.setText("Added");
-					} else {
-						displayField.setText("Invalid index.");
-					}
+					displayField.setText(arr.set(element, index));
 				} catch (Exception ex) {
 					displayField.setText("Ente a valid index and element.");
 				}
 			}
 		});
 		addButton.setBounds(507, 144, 140, 50);
-		addButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		add(addButton);
 		
-		deleteButton_1 = new JButton("REMOVE ELEMENT");
+		deleteButton_1 = new SquareButtons("<html>REMOVE<br> ELEMENT<html>", 18);
 		deleteButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(arr == null) {
@@ -138,7 +138,7 @@ public class ArrayUI extends JPanel {
 				try {
 					int element = Integer.parseInt(elementField.getText());
 					if(arr.deleteElement(element)) {
-						displayField.setText("Element Removed");
+						displayField.setText("Element " + element + " Removed");
 					} else {
 						displayField.setText("Element Not Found.");
 					}
@@ -148,11 +148,10 @@ public class ArrayUI extends JPanel {
 			}
 		});
 		
-		deleteButton_1.setBounds(50, 226, 140, 50);
-		deleteButton_1.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
-	    add(deleteButton_1);
+		deleteButton_1.setBounds(40, 226, 140, 50);
+		add(deleteButton_1);
 		
-		deleteButton_2 = new JButton("REMOVE FROM INDEX");
+		deleteButton_2 = new SquareButtons("<html>REMOVE<br>FROM INDEX<html>", 18);
 		deleteButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(arr == null) {
@@ -160,22 +159,17 @@ public class ArrayUI extends JPanel {
 					return;
 				}
 				try {
-					int index = Integer.parseInt(indexField.getText());
-					if(arr.deleteFromIndex(index)) {
-						displayField.setText("Removed element from index " + index);
-					} else {
-						displayField.setText("Invalid index.");
-					}
+					int index = Integer.parseInt(indexField.getText());	
+					displayField.setText(arr.deleteFromIndex(index));
 				} catch (Exception ex) {
 					displayField.setText("Ente a positive integer as index.");
 				}
 			}
 		});
 		deleteButton_2.setBounds(280, 226, 140, 50);
-		deleteButton_2.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		add(deleteButton_2);
 		
-		displayButton = new JButton("DISPLAY");
+		displayButton = new SquareButtons("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(arr == null) {
@@ -191,11 +185,10 @@ public class ArrayUI extends JPanel {
 				}
 			}
 		});
-		displayButton.setBounds(510, 223, 140, 50);
-		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
+		displayButton.setBounds(507, 223, 140, 50);
 		add(displayButton);
 		
-		displayField = new JTextArea("hii");
+		displayField = new JTextArea("Create an Array.");
 		displayField.setEditable(false);
 		displayField.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		displayField.setDisabledTextColor(new Color(0, 0, 0));

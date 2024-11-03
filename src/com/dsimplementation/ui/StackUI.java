@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import com.dsimplementation.datastructures.Stack;
 import com.dsimplementation.util.RoundedButton;
+import com.dsimplementation.util.SquareButtons;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,6 +45,7 @@ public class StackUI extends JPanel {
 	public StackUI() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 	    setLayout(null);
 		
 		
@@ -51,8 +53,8 @@ public class StackUI extends JPanel {
 		title.setEditable(false);
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		title.setBackground(new Color(255, 255, 255));
-		title.setDisabledTextColor(new Color(0, 255, 255));
+		title.setBackground(null);
+		title.setDisabledTextColor(new Color(255, 131, 5));
 		title.setBounds(280, 10, 102, 44);
 		add(title);
 		
@@ -64,28 +66,29 @@ public class StackUI extends JPanel {
 		
 		sizeField = new JTextField();
 		sizeField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		sizeLabel.setForeground(new Color(2, 76, 170));
 		sizeField.setBounds(152, 84, 85, 35);
 		add(sizeField);
 		sizeField.setColumns(10);
 		
-		createButton = new JButton("CREATE STACK");
+		createButton = new SquareButtons("<html>CREATE<br>STACK</html>", 20);
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int size = Integer.parseInt(sizeField.getText());
 					stack = new Stack().createStacK(size);
-					displayPane.setText("Stack\nCreated.");
+					displayPane.setText("Stack of\n Size\n" +size+ "\nCreated.");
 				} catch (Exception ex) {
 					displayPane.setText("Enter\na\nvalid\nsize.");
 				}
 			}
 		});
-		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
-		createButton.setBounds(280, 84, 140, 35);
+		createButton.setBounds(280, 76, 140, 50);
 		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(39, 159, 120, 35);
+		elementLabel.setForeground(new Color(2, 76, 170));
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(elementLabel);
 		
@@ -96,7 +99,7 @@ public class StackUI extends JPanel {
 		elementField.setColumns(10);
 		
 		
-		pushButton = new JButton("PUSH");
+		pushButton = new SquareButtons("PUSH", 30);
 		pushButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stack == null) {
@@ -106,7 +109,7 @@ public class StackUI extends JPanel {
 				try {
 					int element = Integer.parseInt(elementField.getText());
 					if(stack.push(element)) {
-						displayPane.setText("Pushed");
+						displayPane.setText("Pushed\n" + element);
 					} else {
 						displayPane.setText("Stack\nIs\nFull");
 					}
@@ -116,10 +119,9 @@ public class StackUI extends JPanel {
 			}
 		});
 		pushButton.setBounds(280, 150, 140, 50);
-		pushButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(pushButton);
 		
-		popButton = new JButton("POP");
+		popButton = new SquareButtons("POP", 30);
 		popButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stack == null) {
@@ -131,10 +133,9 @@ public class StackUI extends JPanel {
 		});
 		
 		popButton.setBounds(39, 226, 140, 50);
-		popButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(popButton);
 		
-		peekButton = new JButton("PEEK");
+		peekButton = new SquareButtons("PEEK", 30);
 		peekButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stack == null) {
@@ -146,10 +147,9 @@ public class StackUI extends JPanel {
 			}
 		});
 		peekButton.setBounds(280, 226, 140, 50);
-		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(peekButton);
 		
-		displayButton = new JButton("DISPLAY");
+		displayButton = new SquareButtons("DISPLAY");
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stack == null) {
@@ -167,12 +167,12 @@ public class StackUI extends JPanel {
 			}
 		});
 		displayButton.setBounds(152, 288, 140, 50);
-		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		add(displayButton);
 
 		
 		displayPane = new JTextPane();
 		displayPane.setDisabledTextColor(new Color(0, 0, 0));
+		displayPane.setText("Create\na\nStack.");
 		displayPane.setEditable(false);
 		displayPane.setEnabled(false);
 		displayPane.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));

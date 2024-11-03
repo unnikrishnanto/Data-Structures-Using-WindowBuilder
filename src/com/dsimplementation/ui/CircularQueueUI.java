@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.CircularQueue;
 import com.dsimplementation.util.RoundedButton;
+import com.dsimplementation.util.SquareButtons;
 
 public class CircularQueueUI extends JPanel {
 
@@ -38,20 +39,22 @@ public class CircularQueueUI extends JPanel {
 	public CircularQueueUI() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 	    setLayout(null);
 		
 		
-		JTextArea title = new JTextArea("QUEUE");
+		JTextArea title = new JTextArea("CIRCULAR QUEUE");
 		title.setEditable(false);
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		title.setBackground(new Color(255, 255, 255));
-		title.setDisabledTextColor(new Color(0, 255, 255));
-		title.setBounds(280, 10, 102, 44);
+		title.setBackground(null);
+		title.setDisabledTextColor(new Color(255, 131, 5));
+		title.setBounds(200, 10, 350, 44);
 		add(title);
 		
 		JLabel sizeLabel = new JLabel("SIZE");
 		sizeLabel.setBounds(40, 84, 85, 35);
+		sizeLabel.setForeground(new Color(2, 76, 170));
 		sizeLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(sizeLabel);
 
@@ -62,26 +65,26 @@ public class CircularQueueUI extends JPanel {
 		add(sizeField);
 		sizeField.setColumns(10);
 		
-		createButton = new JButton("CREATE QUEUE WITH GIVEN SIZE");
+		createButton = new SquareButtons("CREATE QUEUE WITH GIVEN SIZE", 15);
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int size = Integer.parseInt(sizeField.getText());
 					 q = new CircularQueue(size);
-					 displayArea.setText("Queue Created.");
+					 displayArea.setText("Queue of size " + size + " Created.");
 				} catch (Exception ex) {
 					 displayArea.setText("Enter a valid size.");
 				}
 			}
 		});
 		
-		createButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 15));
 		createButton.setBounds(280, 84, 260, 35);
 		add(createButton);
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(40, 155, 120, 35);
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
+		elementLabel.setForeground(new Color(2, 76, 170));
 		add(elementLabel);
 		
 		elementField = new JTextField();
@@ -91,7 +94,7 @@ public class CircularQueueUI extends JPanel {
 		elementField.setColumns(10);
 		
 		
-		enqueueButton = new JButton("ENQUEUE");
+		enqueueButton = new SquareButtons("ENQUEUE");
 		enqueueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( q == null) {
@@ -107,10 +110,9 @@ public class CircularQueueUI extends JPanel {
 			}
 		});
 		enqueueButton.setBounds(310, 146, 140, 50);
-		enqueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		add(enqueueButton);
 		
-		dequeButton = new JButton("DEQUEUE");
+		dequeButton = new SquareButtons("DEQUEUE");
 		dequeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -122,10 +124,9 @@ public class CircularQueueUI extends JPanel {
 		});
 		
 		dequeButton.setBounds(480, 146, 140, 50);
-		dequeButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		add(dequeButton);
 		
-		peekButton = new JButton("PEEK");
+		peekButton = new SquareButtons("PEEK", 30);
 		peekButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -137,10 +138,9 @@ public class CircularQueueUI extends JPanel {
 			}
 		});
 		peekButton.setBounds(135, 215, 140, 50);
-		peekButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 30));
 		add(peekButton);
 		
-		displayButton = new JButton("DISPLAY");
+		displayButton = new SquareButtons("DISPLAY", 20);
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(q == null) {
@@ -158,7 +158,6 @@ public class CircularQueueUI extends JPanel {
 			}
 		});
 		displayButton.setBounds(410, 215, 140, 50);
-		displayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 20));
 		add(displayButton);
 		
 		displayArea = new JTextArea();

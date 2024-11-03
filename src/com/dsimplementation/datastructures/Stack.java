@@ -22,7 +22,7 @@ public class Stack {
 		if(top== -1) {
 			return "Stack\nis\nEmpty.";
 		} else {
-			return String.valueOf(stack[top--]);
+			return "Element\n" + String.valueOf(stack[top--]) +"\nPopped.";
 		}
 	}
 	
@@ -30,7 +30,7 @@ public class Stack {
 		if(top== -1) {
 			return "Stack\nis\nEmpty.";
 		} else {
-			return String.valueOf(stack[top]);
+			return "Element\n at top\nis\n" + String.valueOf(stack[top]) + ".";
 		}
 	}
 	

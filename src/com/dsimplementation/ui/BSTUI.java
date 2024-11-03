@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.dsimplementation.datastructures.BST;
 import com.dsimplementation.util.RoundedButton;
+import com.dsimplementation.util.SquareButtons;
 
 public class BSTUI extends JPanel {
 
@@ -36,6 +37,7 @@ public class BSTUI extends JPanel {
 	public BSTUI() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 	    setLayout(null);
 		
 		JTextArea title = new JTextArea("BINARY SEARCH TREE");
@@ -43,13 +45,14 @@ public class BSTUI extends JPanel {
 		title.setEnabled(false);
 		title.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		title.setBackground(null);
-		title.setDisabledTextColor(new Color(0, 255, 255));
+		title.setDisabledTextColor(new Color(255, 131, 5));
 		title.setBounds(174, 10, 330, 44);
 		add(title);
 		
 		
 		JLabel elementLabel = new JLabel("Element");
 		elementLabel.setBounds(28, 110, 120, 35);
+		elementLabel.setForeground(new Color(2, 76, 170));
 		elementLabel.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
 		add(elementLabel);
 		
@@ -61,30 +64,29 @@ public class BSTUI extends JPanel {
 		
 		
 		
-		insertButton = new JButton("<html>&nbsp; INSERT<br>ELEMENT<html>");
+		insertButton = new SquareButtons("<html>&nbsp; INSERT<br>ELEMENT<html>", 18);
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int element = Integer.parseInt(elementField.getText());
 					root = BST.insert(root, element);
-					displayArea.setText("Node added Sucessfully.");
+					displayArea.setText("Element " + element +" inserted Sucessfully.");
 				} catch (Exception ex) {
 					displayArea.setText("Ente a valid element.");
 				}
 			}
 		});
 		insertButton.setBounds(320, 101, 140, 50);
-		insertButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(insertButton);
 		
-		deleteButton = new JButton("<html>&NBSP; DELETE<br>ELEMENT<html>");
+		deleteButton = new SquareButtons("<html>&NBSP; DELETE<br>ELEMENT<html>", 18);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int element = Integer.parseInt(elementField.getText());
 					if(BST.search(root, element)) {
 					  root = BST.delete(root, element);
-					  displayArea.setText("Node deleted Sucessfully.");
+					  displayArea.setText("Node " + element+" deleted Sucessfully.");
 					} else {
 						displayArea.setText("Node Not Found.");
 					}
@@ -96,12 +98,11 @@ public class BSTUI extends JPanel {
 		});
 		
 		deleteButton.setBounds(500, 101, 140, 50);
-		deleteButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(deleteButton);
 		
 		
 		
-		searchButton = new JButton("<html>SEARCH<br> ELEMENT</html>");
+		searchButton = new SquareButtons("<html>SEARCH<br> ELEMENT</html>", 18);
 		searchButton.setMargin(new Insets(2, 5, 2, 5));
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
@@ -119,10 +120,9 @@ public class BSTUI extends JPanel {
 			}
 		});
 		searchButton.setBounds(28, 200, 140, 50);
-		searchButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(searchButton);
 		
-		inOrderButton = new JButton("<html>DISPLAY<br>IN-ORDER</html>");
+		inOrderButton = new SquareButtons("<html>DISPLAY<br>IN-ORDER</html>", 18);
 		inOrderButton.setMargin(new Insets(2, 5, 2, 5));
 		inOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,10 +141,9 @@ public class BSTUI extends JPanel {
 		});
 		
 		inOrderButton.setBounds(190, 200, 140, 50);
-		inOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(inOrderButton);
 		
-		JButton preOrderButton = new JButton("<html>DISPLAY<br>PRE-ORDER</html>");
+		JButton preOrderButton = new SquareButtons("<html>DISPLAY<br>PRE-ORDER</html>", 18);
 		preOrderButton.setMargin(new Insets(2, 5, 2, 5));
 		preOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,10 +161,9 @@ public class BSTUI extends JPanel {
 			}
 		});
 		preOrderButton.setBounds(355, 200, 140, 50);
-		preOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(preOrderButton);
 		
-		JButton postOrderButton = new JButton("<html>DISPLAY <br>POST-ORDER</html>");
+		JButton postOrderButton = new SquareButtons("<html>DISPLAY <br>POST-ORDER</html>", 18);
 		postOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(root == null) {
@@ -184,10 +182,9 @@ public class BSTUI extends JPanel {
 		postOrderButton.setMargin(new Insets(2, 5, 2, 5));
 		
 		postOrderButton.setBounds(520, 200, 140, 50);
-		postOrderButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		add(postOrderButton);
 		
-		displayArea = new JTextArea();
+		displayArea = new JTextArea("Empty Binary Search Tree Created.");
 		displayArea.setMargin(new Insets(10, 10, 2, 10));
 		displayArea.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
@@ -199,7 +196,11 @@ public class BSTUI extends JPanel {
 		
 		ImageIcon closeIcon  =new ImageIcon(getClass().getResource("/resources/closeButton.png"));
 		RoundedButton backButton = new RoundedButton(30, closeIcon, 1);
-		backButton.addActionListener(e -> MainFrame.cardLayout.first(MainFrame.contentPanel) );
+		backButton.addActionListener(e ->{
+			elementField.setText("");
+			displayArea.setText(BST.inOrder(root));
+			MainFrame.cardLayout.first(MainFrame.contentPanel);
+		});
 		backButton.setBounds(630, 20, 30, 30);		
 		add(backButton);
 	}

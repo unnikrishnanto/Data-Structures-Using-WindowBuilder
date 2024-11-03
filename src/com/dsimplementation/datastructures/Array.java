@@ -3,17 +3,20 @@ package com.dsimplementation.datastructures;
 public class Array{
 	private int[] array;
 	
-	public Array createArray(int size) {
+	public String createArray(int size) {
+		if(size <=0) {
+			return "Size must be greater than 0.";
+		}
 		array = new int[size];
-		return this;
+		return "Array of Size "+ size + " Created.";
 	}
 	
-	public boolean set(int element, int index) {
+	public String set(int element, int index) {
 		if(index >= array.length) {
-			return false;
+			return "Invalid index " + index + " for array of size " + array.length + ".";
 		}
 		array[index] = element;
-		return true;
+		return "Element "+ element + " added at index " + index + "." ;
 	}
 	
 	public boolean deleteElement(int element) {
@@ -26,12 +29,13 @@ public class Array{
 		return false;
 	}
 	
-	public boolean deleteFromIndex(int index) {
+	public String deleteFromIndex(int index) {
 		if(index >= array.length) {
-			return false;
+			return "Invalid index " + index + " for array of size " + array.length + ".";
 		}
+		int element = array[index];
 		array[index] = 0;
-		return true;
+		return "Removed element "+ element + " at index " + index + ".";
 	}
 	
 	

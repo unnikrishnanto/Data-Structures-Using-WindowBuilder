@@ -21,7 +21,7 @@ public class CircularQueue {
 			rear = (rear + 1) % size;
 			queue[rear] = data;
 		}
-		return "Element added sucessfully.";
+		return "Element " + data + " added sucessfully.";
 	}
 	
 	public String deque() {

@@ -17,14 +17,14 @@ public class Queue {
 			return "Queue is Full.";
 		} else {
 			queue[++rear] = element;
-			return "Added to Queue";
+			return "Added "+ element + " to the Queue";
 		}
 	}
 	public String deque(){
 		if(rear == -1 ||(front == size-1)) {
 			return "Queue is Empty";
 		} else {
-			return String.valueOf(queue[++front]);
+			return "Popped " + String.valueOf(queue[++front]);
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class Queue {
 		if(rear == -1 ||(front == size-1)) {
 			return "Queue is Empty";
 		} else {
-			return String.valueOf(queue[front + 1]);
+			return "Element at front is " + String.valueOf(queue[front + 1]);
 		}
 	}
 	

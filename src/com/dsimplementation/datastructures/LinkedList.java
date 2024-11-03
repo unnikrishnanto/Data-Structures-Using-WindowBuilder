@@ -24,7 +24,7 @@ public class LinkedList {
 			newNode.next = head;
 			head = newNode;
 		} 
-		return "Node Added Sucessfully";
+		return "Sucessfully Added "+ data + " To The Front.";
 	}
 
 	
@@ -43,7 +43,7 @@ public class LinkedList {
 			temp.next = newNode;
 			newNode.pre = temp;
 		}
-		return "Node Added Sucessfully";
+		return "Sucessfully Added "+ data + " To The Rear.";
 	}
 	
     public String deleteFromFront() {
@@ -59,7 +59,7 @@ public class LinkedList {
     		head = head.next;
     		head.pre = null;
     	}	
-		return "Deleted element is " + String.valueOf(element);
+		return "Deleted " + element + " From Front.";
 	}
     
     public String deleteFromRear() {
@@ -78,15 +78,15 @@ public class LinkedList {
     		element = temp.next.data;
     		temp.next = null;
     	}	
-		return "Deleted element is " + String.valueOf(element);
+		return "Deleted " + element + " From Rear.";
     }
     
-    public String addNthNode(int position, int element) {
+    public String addNthNode(int index, int element) {
     	Node newNode = new Node(element);
-    	if(position <=0) {
-    		return "Enter a position greater than zero.";
+    	if(index < 0) {
+    		return "Enter an index greater than or equal to zero.";
     	}
-    	if (position == 1) { 
+    	if (index == 0) { 
     		if(head == null) {
     			head = newNode;
     		} else {
@@ -94,16 +94,17 @@ public class LinkedList {
     			head.pre = newNode;
     			head = newNode;
     		}
-    		return "Node added sucessfully";
+    		return "Added "+ element + " at index " + index + "." ;
 		} 
     	int size = findSize();
-    	if(position > size+1) {
-    		return "Cannot insert a node at position " + position + " of a List of size "+ size +".";
+    	if(index > size) {
+    		return "Cannot insert a node at index " + index  + " into a List of size "+ size +".";
     	} else {
     		Node temp = head;
-			while(position > 2) {
+			int pos =0;
+    		while(pos < index-1) {
 				temp = temp.next;
-				position--;
+				pos++;
 			}
 			if(temp.next != null) {
 				newNode.next = temp.next;
@@ -111,23 +112,23 @@ public class LinkedList {
 			}
 			temp.next = newNode;
 			newNode.pre = temp;
-			return "Node added Sucessfully.";
+			return  "Added "+ element + " at index " + index + ".";
 		}
     	
 	}
 	
-    public String deleteNthNode(int position) {
-    	if(position <=0) {
-    		return "Enter a position greater than zero.";
+    public String deleteNthNode(int index) {
+    	if(index < 0) {
+    		return "Enter a position greater than or equal zero.";
     	}
     	int size = findSize();
     	if(size == 0) {
     		return "Linked List is Empty";
-    	} else if(position > size) {
-    		return "Position "+ position + " not valid for a list of size " + size + "."; 
+    	} else if(index >= size) {
+    		return "Position "+ index + " not valid for a list of size " + size + "."; 
     	} else {
     		int element;
-    		if(position == 1) {
+    		if(index == 0) {
     			if(head.next == null) {
     				element = head.data;
     				head = null;
@@ -136,12 +137,13 @@ public class LinkedList {
     				head = head.next;
     				head.pre = null;
     			}
-    			return "Deleted node with data " + element +".";
+    			return "Deleted node with data " + element +" from index " + index + ".";
     		} else {
     			Node temp = head;
-        		while(position > 1) {
+    			int pos = 0;
+        		while(pos < index) {
         			temp = temp.next;
-        			position--;
+        			pos++;
         		}
         		element = temp.data;
         		if(temp.next == null) {
@@ -150,7 +152,7 @@ public class LinkedList {
         		temp.next.pre = temp.pre;
         		temp.pre.next = temp.next;
         		}
-        		return "Deleted node with data " + element +".";
+        		return "Deleted node with data " + element +" from index " + index + ".";
     		}
     	}
     }

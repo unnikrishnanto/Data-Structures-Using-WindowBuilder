@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+
+import com.dsimplementation.util.SquareButtons;
 
 
 public class HomeUI extends JPanel {
@@ -20,6 +20,7 @@ public class HomeUI extends JPanel {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(new Color(219, 211, 211));
 		setLayout(null);
 		
 		
@@ -27,14 +28,14 @@ public class HomeUI extends JPanel {
 		textArea.setEditable(false);
 		textArea.setEnabled(false);
 		textArea.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 33));
-		textArea.setBackground(new Color(255, 255, 255));
-		textArea.setDisabledTextColor(new Color(0, 255, 255));
+		textArea.setBackground(null);
+		textArea.setDisabledTextColor(new Color(255, 131, 5));
 		textArea.setBounds(159, 35, 382, 41);
 		add(textArea);
 		
-		JButton arrayButton = new JButton("ARRAY");
+		
+		SquareButtons arrayButton = new SquareButtons("ARRAY");
 		arrayButton.setBounds(50, 140, 140, 50);
-		arrayButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		arrayButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -45,9 +46,8 @@ public class HomeUI extends JPanel {
 		
 		add(arrayButton);
 		
-		JButton stackButton = new JButton("STACK");
+		SquareButtons stackButton = new SquareButtons("STACK");
 		stackButton.setBounds(280, 140, 140, 50);
-		stackButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		stackButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -56,7 +56,7 @@ public class HomeUI extends JPanel {
 		});
 		add(stackButton);
 		
-		JButton queueButton = new JButton("QUEUE");
+		SquareButtons queueButton = new SquareButtons("QUEUE");
 		queueButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -65,12 +65,10 @@ public class HomeUI extends JPanel {
 		});
 		
 		queueButton.setBounds(510, 140, 140, 50);
-		queueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 25));
 		add(queueButton);
 		
-		JButton circularQueueButton = new JButton("<html>CIRCULAR<br>&nbsp&nbsp QUEUE</html>");
+		SquareButtons circularQueueButton = new SquareButtons("<html>CIRCULAR<br>&nbsp&nbsp QUEUE</html>", 20);
 		circularQueueButton.setBounds(50, 260, 140, 50);
-		circularQueueButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 16));
 		circularQueueButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -80,9 +78,8 @@ public class HomeUI extends JPanel {
 		});
 		add(circularQueueButton);
 		
-		JButton linkedListButton = new JButton("LINKED LIST");
+		SquareButtons linkedListButton = new SquareButtons("LINKED LIST", 18);
 		linkedListButton.setBounds(280, 260, 140, 50);
-		linkedListButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 18));
 		linkedListButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -93,9 +90,8 @@ public class HomeUI extends JPanel {
 		
 		add(linkedListButton);
 		
-		JButton binarySearchTreeButton = new JButton("BINARY SEARCH TREE");
+		SquareButtons binarySearchTreeButton = new SquareButtons("<html>BINARY <br>SEARCH TREE<html>", 17);
 		binarySearchTreeButton.setBounds(510, 260, 140, 50);
-		binarySearchTreeButton.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 10));
 		binarySearchTreeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
